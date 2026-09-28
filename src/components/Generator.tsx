@@ -107,7 +107,7 @@ export default function Generator() {
 
             finalizeDownload();
           };
-          logoImg.src = "./acm-logo.webp";
+          logoImg.src = (process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp";
         } else {
           finalizeDownload();
         }
@@ -172,7 +172,7 @@ export default function Generator() {
 
           finalizeDownload(canvas);
         };
-        logoImg.src = "./acm-logo.webp";
+        logoImg.src = (process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp";
       } else {
         canvas.width = img.width;
         canvas.height = img.height;
@@ -310,7 +310,7 @@ export default function Generator() {
                   />
                   {includeLogo && (
                     <div className="absolute flex items-center justify-center z-10 w-[72px] h-[72px] border-4 border-acm-ink shadow-[6px_6px_0px_0px_#000]" style={{ backgroundColor: bgColor, transform: 'rotate(45deg)' }}>
-                      <img src="./acm-logo.webp" alt="ACM Logo" className="w-[52px] h-[52px] object-contain" style={{ transform: 'rotate(-45deg)' }} />
+                      <img src={(process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp"} alt="ACM Logo" className="w-[52px] h-[52px] object-contain" style={{ transform: 'rotate(-45deg)' }} />
                     </div>
                   )}
                 </div>
@@ -321,7 +321,7 @@ export default function Generator() {
               <div className="p-8 bg-white border-4 border-acm-ink shadow-ultra-hover rounded-2xl w-full flex flex-col items-center justify-center overflow-visible relative transition-all duration-300" style={{ backgroundColor: bgColor }}>
                 {includeLogo && (
                   <div className="absolute -top-2 z-20 group-hover:-translate-y-2 transition-transform drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-                    <img src="./acm-logo.webp" alt="ACM Logo" className="h-20 w-20 object-contain" />
+                    <img src={(process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp"} alt="ACM Logo" className="h-20 w-20 object-contain" />
                   </div>
                 )}
                 <div id="barcode-container" className="mt-6">

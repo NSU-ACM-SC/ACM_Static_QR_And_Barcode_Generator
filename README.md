@@ -1,4 +1,4 @@
-# Neo-Brutalist QR & Barcode Generator
+# NSU ACM QR & Barcode Generator
 
 A stunning, ultra-premium Neo-Brutalist styled QR Code and Barcode generator built with Next.js and TailwindCSS. Features extremely high-resolution 4K canvas downloads and dynamic logo framing.
 

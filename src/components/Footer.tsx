@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-               <img src="/acm-logo.webp" alt="NSU ACM Logo" className="w-14 h-14 bg-white rounded-full border-2 border-acm-paper p-1" />
+               <img src={(process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp"} alt="NSU ACM Logo" className="w-14 h-14 bg-white rounded-full border-2 border-acm-paper p-1" />
                <div>
                   <h3 className="text-2xl font-black uppercase text-acm-orange tracking-wider">{brand.title}</h3>
                   <p className="text-lg font-bold text-acm-blue">{brand.subtitle}</p>

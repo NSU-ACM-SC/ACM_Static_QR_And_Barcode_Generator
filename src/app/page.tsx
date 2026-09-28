@@ -8,7 +8,7 @@ export default function Home() {
       <header className="border-b-4 border-acm-ink bg-acm-blue p-6 shadow-neo-lg z-10 sticky top-0">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <img src="/acm-logo.webp" alt="NSU ACM Logo" className="w-12 h-12 bg-white rounded-full border-2 border-acm-ink" />
+            <img src={(process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp"} alt="NSU ACM Logo" className="w-12 h-12 bg-white rounded-full border-2 border-acm-ink" />
             <div>
               <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white" style={{ textShadow: '2px 2px 0 #000' }}>
                 NSU ACM SC

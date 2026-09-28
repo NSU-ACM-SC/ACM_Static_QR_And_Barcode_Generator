@@ -35,7 +35,7 @@ export const quickLinks = [
 
 export const footerData = {
   brand: {
-    logoSrc: "/acm-logo.webp",
+    logoSrc: (process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp",
     title: "NSU ACM",
     subtitle: "Student Chapter",
     description: "Department of Electrical & Computer Engineering, North South University.",
