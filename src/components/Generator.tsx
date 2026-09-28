@@ -277,16 +277,16 @@ export default function Generator() {
       </div>
 
       {/* Output Section */}
-      <div className="flex-1 flex flex-col items-center justify-center bg-polka bg-[#f4f4f4] border-4 border-acm-ink p-8 shadow-ultra relative min-h-[450px] overflow-hidden rounded-xl">
-        <div className="absolute top-4 right-4 bg-acm-orange text-white font-black px-6 py-2 border-4 border-acm-ink transform rotate-6 z-10 shadow-neo text-lg">
+      <div className="flex-1 flex flex-col items-center justify-center bg-polka bg-[#f4f4f4] border-4 border-acm-ink p-4 sm:p-8 shadow-ultra relative min-h-[450px] rounded-xl">
+        <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-acm-orange text-white font-black px-4 py-1 sm:px-6 sm:py-2 border-4 border-acm-ink transform rotate-6 z-10 shadow-neo text-base sm:text-lg">
           RESULT
         </div>
 
-        <div className="flex-1 flex items-center justify-center w-full p-4 relative z-0 mt-8">
+        <div className="flex-1 flex items-center justify-center w-full p-2 sm:p-4 relative z-0 mt-10 sm:mt-8">
           {activeTab === "qr" ? (
             <div className="relative group">
               {/* SCAN ME Badge */}
-              <div className="absolute -left-8 -top-8 bg-acm-purple text-white font-black text-xl px-5 py-2 border-4 border-acm-ink transform -rotate-12 shadow-neo z-20 transition-transform group-hover:scale-110 group-hover:rotate-[-8deg]">
+              <div className="absolute -left-4 -top-6 sm:-left-8 sm:-top-8 bg-acm-purple text-white font-black text-lg sm:text-xl px-3 py-1 sm:px-5 sm:py-2 border-4 border-acm-ink transform -rotate-12 shadow-neo z-20 transition-transform group-hover:scale-110 group-hover:rotate-[-8deg]">
                 SCAN ME!
               </div>
 
