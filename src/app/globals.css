@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --acm-paper: #f1eee7;
+  --acm-ink: #000000;
+  --acm-orange: #f47b2b;
+  --acm-blue: #3392cc;
+  --acm-purple: #5227FF;
+}
+
+body {
+  background-color: var(--acm-paper);
+  color: var(--acm-ink);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.neo-box {
+  background-color: #ffffff;
+  border: 3px solid var(--acm-ink);
+  box-shadow: 6px 6px 0px 0px var(--acm-ink);
+  transition: all 0.2s ease-in-out;
+}
+
+.neo-button {
+  background-color: var(--acm-blue);
+  color: #ffffff;
+  border: 3px solid var(--acm-ink);
+  box-shadow: 4px 4px 0px 0px var(--acm-ink);
+  transition: all 0.15s ease-in-out;
+  font-weight: 700;
+}
+
+.neo-button:active {
+  box-shadow: 0px 0px 0px 0px var(--acm-ink);
+  transform: translate(4px, 4px);
+}
+
+.neo-input {
+  background-color: #ffffff;
+  border: 3px solid var(--acm-ink);
+  padding: 0.75rem;
+  font-size: 1rem;
+  box-shadow: 3px 3px 0px 0px var(--acm-ink);
+  outline: none;
+}
+.neo-input:focus {
+  box-shadow: 5px 5px 0px 0px var(--acm-purple);
+  border-color: var(--acm-purple);
+}
+
+.bg-polka {
+  background-image: radial-gradient(var(--acm-ink) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.shadow-ultra {
+  box-shadow: 10px 10px 0px 0px var(--acm-ink);
+}
+
+.shadow-ultra-hover:hover {
+  box-shadow: 14px 14px 0px 0px var(--acm-ink);
+  transform: translate(-4px, -4px);
+}
