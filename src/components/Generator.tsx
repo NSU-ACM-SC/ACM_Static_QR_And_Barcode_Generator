@@ -29,6 +29,11 @@ export default function Generator() {
     // Scale up the resolution for the download (16x for ultra-high-res 4K export)
     const scale = 16;
     const clonedSvg = svg.cloneNode(true) as SVGSVGElement;
+    
+    // Remove the image element added by qrcode.react so we can draw it manually at high-res
+    const imageElement = clonedSvg.querySelector("image");
+    if (imageElement) imageElement.remove();
+
     const originalWidth = parseInt(clonedSvg.getAttribute("width") || "240");
     const originalHeight = parseInt(clonedSvg.getAttribute("height") || "240");
 
@@ -49,9 +54,9 @@ export default function Generator() {
       if (ctx) {
         ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
 
         const finalizeDownload = () => {
+          ctx.drawImage(img, 0, 0); // Draw QR code dots on top
           const pngFile = canvas.toDataURL("image/png");
           const downloadLink = document.createElement("a");
           downloadLink.download = "qrcode.png";
@@ -65,32 +70,12 @@ export default function Generator() {
             const cx = canvas.width / 2;
             const cy = canvas.height / 2;
 
-            // Draw diamond background with border and shadow
-            const rectSize = 72 * scale;
-            const borderWidth = 4 * scale;
-            const shadowOff = 6 * scale;
-
             ctx.save();
             ctx.translate(cx, cy);
-            ctx.rotate(45 * Math.PI / 180);
 
-            // Draw Shadow
-            ctx.fillStyle = '#000000';
-            ctx.fillRect(-rectSize / 2 + shadowOff, -rectSize / 2 + shadowOff, rectSize, rectSize);
-
-            // Draw Fill
-            ctx.fillStyle = bgColor;
-            ctx.fillRect(-rectSize / 2, -rectSize / 2, rectSize, rectSize);
-
-            // Draw Border
-            ctx.lineWidth = borderWidth;
-            ctx.strokeStyle = '#000000';
-            ctx.strokeRect(-rectSize / 2, -rectSize / 2, rectSize, rectSize);
-
-            // Draw Logo image rotated back to upright
-            ctx.rotate(-45 * Math.PI / 180);
-
-            const maxImgSize = 52 * scale;
+            // Draw Watermark
+            ctx.globalAlpha = 0.30;
+            const maxImgSize = canvas.width * 0.75;
             const aspect = logoImg.width / logoImg.height;
             let drawW = maxImgSize;
             let drawH = maxImgSize;
@@ -299,20 +284,22 @@ export default function Generator() {
                 <div className="absolute bottom-3 right-3 w-3 h-3 rounded-full bg-acm-ink opacity-20"></div>
 
                 <div className="mt-4 mb-2 mx-2 relative flex items-center justify-center">
-                  <QRCodeSVG
-                    id="qr-code-svg"
-                    value={generatedValue}
-                    size={240}
-                    fgColor={fgColor}
-                    bgColor={bgColor}
-                    level="L"
-                    includeMargin={false}
-                  />
                   {includeLogo && (
-                    <div className="absolute flex items-center justify-center z-10 w-[72px] h-[72px] border-4 border-acm-ink shadow-[6px_6px_0px_0px_#000]" style={{ backgroundColor: bgColor, transform: 'rotate(45deg)' }}>
-                      <img src={(process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp"} alt="ACM Logo" className="w-[52px] h-[52px] object-contain" style={{ transform: 'rotate(-45deg)' }} />
+                    <div className="absolute inset-0 flex items-center justify-center z-0 opacity-30 pointer-events-none">
+                      <img src={(process.env.NODE_ENV === "production" ? "/ACM_Static_QR_And_Barcode_Generator" : "") + "/acm-logo.webp"} alt="ACM Logo Watermark" className="w-3/4 h-3/4 object-contain" />
                     </div>
                   )}
+                  <div className="relative z-10">
+                    <QRCodeSVG
+                      id="qr-code-svg"
+                      value={generatedValue}
+                      size={240}
+                      fgColor={fgColor}
+                      bgColor="transparent"
+                      level="L"
+                      includeMargin={false}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
